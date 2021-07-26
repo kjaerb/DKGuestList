@@ -1,0 +1,27 @@
+.wrapper {
+    width: 100%;
+    
+    .header {
+        @include flexCenter;
+        flex-direction: column;
+        img {
+            height: 200px;
+            object-fit: contain;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+        }
+    }
+    .guest-list {
+        .header-text {
+            text-align: center;
+        }
+        .participate-status {
+            @include flexCenter;
+            background-color: black;
+            color: white;
+            height: 4rem;
+        }
+    }
+}

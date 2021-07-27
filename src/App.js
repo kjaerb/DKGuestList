@@ -20,6 +20,7 @@ function App() {
     
     //Runs once
     useEffect(() => {
+        getLocalGuests()
         setAllGuests(newGuestList);
     }, [])
 
@@ -34,6 +35,10 @@ function App() {
         })
         filterHandler(tempList) 
     }, [FilterStatus, AllGuests, SearchText])
+
+    useEffect(() => {
+        
+    })
 
     //Change guests shown
     function filterHandler(list) {

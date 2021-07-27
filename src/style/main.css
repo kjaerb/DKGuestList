@@ -7,13 +7,13 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 #root {
@@ -59,33 +59,24 @@ code {
   text-align: center;
 }
 
+@media screen and (max-width: 1160px) {
+  #root .wrapper {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #root .wrapper {
+    width: 90%;
+  }
+}
+
 @media screen and (max-width: 376px) {
   #root .wrapper {
-    width: 100vw;
-  }
-  #root .wrapper .header {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    width: 100%;
   }
   #root .wrapper .header img {
-    height: 200px;
-    -o-object-fit: contain;
-       object-fit: contain;
-    margin: 0 auto;
-  }
-  #root .wrapper .header h1 {
-    text-align: center;
+    height: 150px;
   }
 }
 
@@ -100,7 +91,7 @@ code {
   margin: 1rem 0;
 }
 
-.user-options .search-option, .user-options .add-option {
+.user-options .search-option, .user-options .add-option, .user-options .arrived-option {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -112,6 +103,10 @@ code {
           justify-content: center;
   margin: .5rem;
   width: 50%;
+}
+
+.user-options .search-option h2, .user-options .add-option h2, .user-options .arrived-option h2 {
+  margin: 0 1rem;
 }
 
 .user-options .search-option input {
@@ -133,45 +128,46 @@ code {
   cursor: pointer;
 }
 
-.user-options .add-option h2 {
-  margin: 0 1rem;
+.user-options .arrived-option .filter-guests {
+  height: 2rem;
+  width: 10rem;
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 768px) {
   .user-options {
-    margin: .5rem 0;
-  }
-  .user-options .search-option, .user-options .add-option {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    margin: .5rem;
-    width: 50%;
   }
-  .user-options .search-option input {
-    margin: 0 1rem;
-    border: none;
-    border-bottom: 1px solid black;
-    height: 2rem;
+  .user-options .search-option, .user-options .add-option, .user-options .arrived-option {
+    width: 20rem;
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
+  }
+  .user-options .search-option .filter-guests, .user-options .add-option .filter-guests, .user-options .arrived-option .filter-guests {
+    width: 100%;
+  }
+  .user-options .search-option input, .user-options .add-option input, .user-options .arrived-option input {
+    width: 100%;
+    margin: 0 0 0 1rem;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .user-options {
+    margin: .5rem 0;
+  }
+  .user-options .search-option, .user-options .add-option, .user-options .arrived-option {
+    margin: 1rem;
     width: 75%;
-    background: rgba(0, 0, 0, 0);
-  }
-  .user-options .search-option .search-button {
-    height: 2rem;
-    cursor: pointer;
-  }
-  .user-options .add-option img {
-    height: 2rem;
-    cursor: pointer;
-  }
-  .user-options .add-option h2 {
-    margin: 0 1rem;
   }
 }
 
@@ -229,7 +225,7 @@ code {
           align-items: center;
   border: 1px solid black;
   min-width: 10rem;
-  background-color: #e9e9e9;
+  cursor: pointer;
 }
 
 .guest-card .guest-name {
@@ -257,10 +253,60 @@ code {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  cursor: pointer;
+  border-left: 1px solid black;
 }
 
 .guest-card .has-arrived img {
   height: 2rem;
+}
+
+@media screen and (max-width: 1160px) {
+  .guests .participating-guests, .guests .other-guests {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .guests .participating-guests, .guests .other-guests {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(3rem, 5rem);
+  }
+  .guests h1 {
+    text-align: center;
+  }
+  .guest-card {
+    min-width: 12rem;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .guests .participating-guests, .guests .other-guests {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    grid-gap: .5rem;
+  }
+  .guest-card {
+    min-width: 5rem;
+    min-height: 3.5rem;
+    height: auto;
+    margin: 0 .25rem;
+  }
+  .guest-card .guest-name {
+    width: 80%;
+    height: 2rem;
+    padding: 0.25rem;
+    margin: 0;
+  }
+  .guest-card h3 {
+    font-size: 1em;
+  }
+  .guest-card .has-arrived {
+    width: 20%;
+  }
+  .guest-card .has-arrived img {
+    height: 1.5rem;
+  }
 }
 /*# sourceMappingURL=main.css.map */

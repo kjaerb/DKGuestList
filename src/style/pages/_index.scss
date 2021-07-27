@@ -19,8 +19,20 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1160px) {
+    #root {
+        .wrapper {
+            width: 90%;            
+        }
+    }
+}
 
+@media screen and (max-width: 768px) {
+    #root {
+        .wrapper {
+            width: 90%;            
+        }
+    }
 }
 
 
@@ -28,17 +40,12 @@
     #root {
         
         .wrapper {
-            width: 100vw;    
+            width: 100%;    
             .header {
-                @include flexCenter;
-                flex-direction: column;
+
                 img {
-                    height: 200px;
-                    object-fit: contain;
-                    margin: 0 auto;
-                }
-                h1 {
-                    text-align: center;
+                    height: 150px;
+
                 }
             }
         

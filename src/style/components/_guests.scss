@@ -21,7 +21,7 @@
     @include flexCenter;
     border: 1px solid black;
     min-width: 10rem;
-    background-color: rgb(233, 233, 233);
+    cursor: pointer;
     .guest-name {
         display: flex;
         align-items: center;
@@ -34,10 +34,65 @@
        height: 100%;
        width: 20%;
        @include flexCenter;
-       cursor: pointer;
+       border-left: 1px solid black;
        img {
            height: 2rem;
        }
     }
+}
 
+@media screen and (max-width: 1160px) {
+    .guests {
+        .participating-guests, .other-guests {
+            grid-template-columns: repeat(3, 1fr);
+
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .guests {
+        .participating-guests, .other-guests {
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: minmax(3rem, 5rem);
+        }
+        h1 {
+            text-align: center
+        }
+    }
+    
+    .guest-card {
+        min-width: 12rem;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .guests {
+        .participating-guests, .other-guests {
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: .5rem;
+        }
+    }
+    
+    .guest-card {
+        min-width: 5rem;
+        min-height: 3.5rem;
+        height: auto;
+        margin: 0 .25rem;
+        .guest-name {
+            width: 80%;
+            height: 2rem;
+            padding: 0.25rem;
+            margin: 0;
+        }
+        h3 {
+            font-size: 1em;
+        }
+        .has-arrived {
+           width: 20%;
+           img {
+            height: 1.5rem;
+            }
+        }
+    }
 }

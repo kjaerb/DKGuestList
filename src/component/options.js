@@ -26,6 +26,15 @@ const UserOptions = () => {
                 <img src={AddLogo} alt="tilføjlogo" onClick={AddGuest} />
                 <h2>Tilføj deltager</h2>
             </div>
+            <div className="arrived-option">
+                <select name="guests" className="filter-guests">
+                    <option value="all">Alle</option>
+                    <option value="participating">Deltager</option>
+                    <option value="invited">Inviteret</option>
+                    <option value="new-participants">Nye deltagere</option>
+                    <option value="arrived">Ankomne</option>
+                </select>
+            </div>
         </div>
     );
 }

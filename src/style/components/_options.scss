@@ -3,12 +3,15 @@
     justify-content: space-between;
     width: 100%;
     margin: 1rem 0;
-    .search-option, .add-option {
+    .search-option, .add-option, .arrived-option {
         display: flex;
         align-items: center;
         justify-content: center;
         margin: .5rem;
         width: 50%;
+        h2 {
+            margin: 0 1rem;
+        }
     }
     .search-option {
         input {
@@ -29,48 +32,44 @@
             height: 2rem;
             cursor: pointer;
         }
-        h2 {
-            margin: 0 1rem;
-        }
+       
     }   
+    .arrived-option {
+        .filter-guests {
+            height: 2rem;
+            width: 10rem;
+        }
+        
+    }
 }
 
 @media screen and (max-width: 768px) {
-    
+    .user-options {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .search-option, .add-option, .arrived-option {
+            width: 20rem;
+            justify-content: left;
+            .filter-guests {
+                width: 100%;
+            }
+            input {
+                width: 100%;
+                margin: 0 0 0 1rem;
+            }
+        }
+
+    }
 }
 
 @media screen and (max-width: 376px) {
     .user-options {
         margin: .5rem 0;
-        .search-option, .add-option {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: .5rem;
-            width: 50%;
+        
+        .search-option, .add-option, .arrived-option {
+            margin: 1rem;
+            width: 75%;
         }
-        .search-option {
-            input {
-                margin: 0 1rem;
-                border: none;
-                border-bottom: 1px solid black;
-                height: 2rem;
-                width: 75%;
-                background: rgba(0, 0, 0, 0);
-            }
-            .search-button {
-                height: 2rem;
-                cursor: pointer;
-            }
-        }
-        .add-option {
-            img {
-                height: 2rem;
-                cursor: pointer;
-            }
-            h2 {
-                margin: 0 1rem;
-            }
-        }   
     }
 }

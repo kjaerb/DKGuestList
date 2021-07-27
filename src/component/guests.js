@@ -29,8 +29,12 @@ const Guests = () => {
         AssignGuest();
     }, [])
 
-    function handleCallBack() {
-        console.log("something changed")
+    function updateParticipating(value) {
+        setParticipatingCount(participatingCount + value)
+    }
+
+    function updateNotResponded(value) {
+        setNotRespondedCount(notRespondedCount + value)
     }
 
     return (
@@ -41,7 +45,7 @@ const Guests = () => {
                     return (
                         <GuestCard key={id}
                             name={data.Navn}
-                            HasArrived={handleCallBack} />
+                            onChange={updateParticipating} />
                     );
                 })}
             </div>
@@ -51,7 +55,7 @@ const Guests = () => {
                     return (
                         <GuestCard key={id}
                             name={data.Navn}
-                            HasArrived={handleCallBack} />
+                            onChange={updateNotResponded} />
                     );
                 })}
             </div>

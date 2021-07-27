@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import SearchLogo from '../vendor/img/search.svg';
-import CancelLogo from '../vendor/img/cancel.svg';
 import AddLogo from '../vendor/img/add.svg';
 import GuestList from '../vendor/guestlist.json';
 
-const UserOptions = () => {
+const UserOptions = (props) => {
     const [img, setImg] = useState(SearchLogo)
 
-    const SearchAction = () => {
-        console.log('fired')
+    const SearchAction = (e) => {
+        props.setSearchText(e.target.value)
+    }
+
+    const StatusHandler = (e) => {
+        props.setFilterStatus(e.target.value)
     }
 
     return (
@@ -17,17 +20,18 @@ const UserOptions = () => {
                 <img className="search-button"
                     src={img}
                     alt="søge-felt"
-                    onClick={SearchAction}
+                    
                 />
                 <input type="text"
-                    placeholder="Søg efter deltager" />
+                    placeholder="Søg efter deltager"
+                    onChange={SearchAction} />
             </div>
             <div className="add-option">
                 <img src={AddLogo} alt="tilføjlogo" onClick={AddGuest} />
                 <h2>Tilføj deltager</h2>
             </div>
             <div className="arrived-option">
-                <select name="guests" className="filter-guests">
+                <select onChange={StatusHandler} name="guests" className="filter-guests">
                     <option value="all">Alle</option>
                     <option value="participating">Deltager</option>
                     <option value="invited">Inviteret</option>

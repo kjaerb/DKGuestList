@@ -187,7 +187,7 @@ code {
           flex-direction: column;
 }
 
-.guests .participating-guests, .guests .other-guests {
+.guests .participating-guests {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[4];
@@ -261,14 +261,14 @@ code {
 }
 
 @media screen and (max-width: 1160px) {
-  .guests .participating-guests, .guests .other-guests {
+  .guests .participating-guests {
     -ms-grid-columns: (1fr)[3];
         grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media screen and (max-width: 768px) {
-  .guests .participating-guests, .guests .other-guests {
+  .guests .participating-guests {
     -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: minmax(3rem, 5rem);
@@ -282,7 +282,7 @@ code {
 }
 
 @media screen and (max-width: 376px) {
-  .guests .participating-guests, .guests .other-guests {
+  .guests .participating-guests {
     -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr);
     grid-gap: .5rem;

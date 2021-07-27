@@ -1,7 +1,7 @@
 .guests {
     @include flexCenter;
     flex-direction: column;
-    .participating-guests, .other-guests {
+    .participating-guests {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-auto-rows: minmax(3rem, 4rem);
@@ -43,7 +43,7 @@
 
 @media screen and (max-width: 1160px) {
     .guests {
-        .participating-guests, .other-guests {
+        .participating-guests {
             grid-template-columns: repeat(3, 1fr);
 
         }
@@ -52,7 +52,7 @@
 
 @media screen and (max-width: 768px) {
     .guests {
-        .participating-guests, .other-guests {
+        .participating-guests {
             grid-template-columns: repeat(2, 1fr);
             grid-auto-rows: minmax(3rem, 5rem);
         }
@@ -68,7 +68,7 @@
 
 @media screen and (max-width: 376px) {
     .guests {
-        .participating-guests, .other-guests {
+        .participating-guests {
             grid-template-columns: repeat(2, 1fr);
             grid-gap: .5rem;
         }

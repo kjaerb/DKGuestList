@@ -9,20 +9,19 @@ const GuestCard = (props) => {
 
     const HasArrived = () => {
         if (ArrivedImg === CancelLogo) {
-            handleChange(1, 'ja')
+            changeArrivalHandler()
             setImg(CheckLogo)
             setColor('rgb(0, 213, 0)')
             setAlternateColor('rgb(4, 160, 4)')
         } else {
-            handleChange(-1, 'nej')
             setImg(CancelLogo)
             setColor('red')
             setAlternateColor('rgb(233, 233, 233)')
         }
     }
 
-    function handleChange(value, arrived) {
-        props.onChange(value, arrived)
+    const changeArrivalHandler = () => {
+        console.log("fired")
     }
 
     return (

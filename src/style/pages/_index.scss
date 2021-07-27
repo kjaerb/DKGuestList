@@ -1,27 +1,21 @@
-.wrapper {
-    width: 100%;
-    
-    .header {
-        @include flexCenter;
-        flex-direction: column;
-        img {
-            height: 200px;
-            object-fit: contain;
-            margin: 0 auto;
-        }
-        h1 {
-            text-align: center;
-        }
-    }
-    .guest-list {
-        .header-text {
-            text-align: center;
-        }
-        .participate-status {
+#root {
+    //background: linear-gradient(to top, rgb(133, 0, 0), rgb(211, 0, 211));
+    @include flexCenter;
+    .wrapper {
+        width: 70%;    
+        .header {
             @include flexCenter;
-            background-color: black;
-            color: white;
-            height: 4rem;
+            flex-direction: column;
+            img {
+                height: 200px;
+                object-fit: contain;
+                margin: 0 auto;
+            }
+            h1 {
+                text-align: center;
+            }
         }
+    
     }
 }
+

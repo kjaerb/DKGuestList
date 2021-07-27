@@ -1,0 +1,36 @@
+.user-options {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    margin: 0 auto;
+    .search-option, .add-option {
+        display: flex;
+        align-items: center;
+        margin: .5rem;
+    }
+    .search-option {
+        
+        input {
+            margin: 0 1rem;
+            border: none;
+            border-bottom: 1px solid black;
+            height: 2rem;
+            width: 100%;
+            background: rgba(0, 0, 0, 0);
+        }
+        .search-button {
+            height: 2rem;
+            cursor: pointer;
+        }
+    }
+    .add-option {
+        img {
+            height: 2rem;
+            cursor: pointer;
+        }
+        h2 {
+            margin: 0 1rem;
+        }
+    }
+    
+}

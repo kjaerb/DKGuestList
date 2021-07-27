@@ -1,0 +1,43 @@
+.guests {
+    @include flexCenter;
+    flex-direction: column;
+    .participating-guests, .other-guests {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: minmax(3rem, 4rem);
+        grid-gap: .5rem;
+    }
+    h1 {
+        @include flexCenter;
+        margin: 1rem;
+        padding: 1rem;
+        color: white;
+        background-color: black;
+        width: 100%;
+    }
+}
+
+.guest-card {
+    @include flexCenter;
+    border: 1px solid black;
+    min-width: 10rem;
+    background-color: rgb(233, 233, 233);
+    .guest-name {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        height: 100%;
+        padding: 0.25rem;
+        margin: 0;
+    }
+    .has-arrived {
+       height: 100%;
+       width: 20%;
+       @include flexCenter;
+       cursor: pointer;
+       img {
+           height: 2rem;
+       }
+    }
+
+}

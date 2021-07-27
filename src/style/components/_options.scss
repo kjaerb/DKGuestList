@@ -1,21 +1,22 @@
 .user-options {
     display: flex;
-    flex-direction: column;
-    width: 20rem;
-    margin: 0 auto;
+    justify-content: space-between;
+    width: 100%;
+    margin: 1rem 0;
     .search-option, .add-option {
         display: flex;
         align-items: center;
+        justify-content: center;
         margin: .5rem;
+        width: 50%;
     }
     .search-option {
-        
         input {
             margin: 0 1rem;
             border: none;
             border-bottom: 1px solid black;
             height: 2rem;
-            width: 100%;
+            width: 75%;
             background: rgba(0, 0, 0, 0);
         }
         .search-button {
@@ -31,6 +32,45 @@
         h2 {
             margin: 0 1rem;
         }
-    }
+    }   
+}
+
+@media screen and (max-width: 768px) {
     
+}
+
+@media screen and (max-width: 376px) {
+    .user-options {
+        margin: .5rem 0;
+        .search-option, .add-option {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: .5rem;
+            width: 50%;
+        }
+        .search-option {
+            input {
+                margin: 0 1rem;
+                border: none;
+                border-bottom: 1px solid black;
+                height: 2rem;
+                width: 75%;
+                background: rgba(0, 0, 0, 0);
+            }
+            .search-button {
+                height: 2rem;
+                cursor: pointer;
+            }
+        }
+        .add-option {
+            img {
+                height: 2rem;
+                cursor: pointer;
+            }
+            h2 {
+                margin: 0 1rem;
+            }
+        }   
+    }
 }

@@ -3,9 +3,7 @@ import GuestList from '../vendor/guestlist.json';
 import GuestCard from './guestCard';
 
 const Guests = () => {
-    const [result] = useState(GuestList);
-
-    result.sort((a, b) => a.Navn.localeCompare(b.Navn));
+    GuestList.sort((a, b) => a.Navn.localeCompare(b.Navn));
 
     const [participating, setParticipating] = useState([])
     const [participatingCount, setParticipatingCount] = useState(0)
@@ -17,7 +15,7 @@ const Guests = () => {
         let tempParticipating = [];
         let tempNotResponded = [];
         // eslint-disable-next-line array-callback-return
-        result.map((data) => {
+        GuestList.map((data) => {
             if (data.Status === 'Deltager') tempParticipating.push(data);
             else tempNotResponded.push(data);
         })
@@ -39,7 +37,7 @@ const Guests = () => {
 
     return (
         <div className="guests">
-            <h1>Deltagere: {participating.length} - Ankommet: {participatingCount} </h1>
+            <h1>Deltagere: {participating.length} | Ankommet: {participatingCount} </h1>
             <div className="participating-guests">
                 {participating.map((data, id) => {
                     return (
@@ -49,7 +47,7 @@ const Guests = () => {
                     );
                 })}
             </div>
-            <h1>Ikke reageret: {notResponded.length} - Ankommet: {notRespondedCount}</h1>
+            <h1>Inviteret: {notResponded.length} | Ankommet: {notRespondedCount}</h1>
             <div className="other-guests">
                 {notResponded.map((data, id) => {
                     return (

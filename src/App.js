@@ -39,13 +39,13 @@ function App() {
     function filterHandler(list) {
         switch (FilterStatus) {
             case 'participating':
-                setFilteredGuests(list.filter((guest) => guest.Status === 'Deltager'))
+                setFilteredGuests(list.filter((guest) => guest.Status === 'Deltager' && guest.Arrived === false))
                 break;
             case 'not-arrived':
                 setFilteredGuests(list.filter((guest) => (guest.Status === 'Deltager' || guest.Status === 'Inviteret' || guest.Status === 'Måske') && guest.Arrived === false))
                 break;
             case 'invited':
-                setFilteredGuests(list.filter((guest) => guest.Status === 'Inviteret' || guest.Status === "Måske"))
+                setFilteredGuests(list.filter((guest) => (guest.Status === 'Inviteret' || guest.Status === "Måske") && guest.Arrived === false))
                 break;
             case 'new-participants':
                 setFilteredGuests(list.filter((guest) => guest.Status === 'new-arrival'))

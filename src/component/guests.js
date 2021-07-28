@@ -11,9 +11,7 @@ const Guests = (props) => {
                         <GuestCard key={id}
                             guest={guest}
                             AllGuests={props.AllGuests}
-                            FilteredGuests={props.FilteredGuests}
                             setAllGuests={props.setAllGuests}
-                            setFilteredGuests={props.setFilteredGuests}
                         />
                     );
                 })}

@@ -7,13 +7,13 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 #root {
@@ -226,6 +226,7 @@ code {
   border: 1px solid black;
   min-width: 10rem;
   cursor: pointer;
+  background: #e9e9e9;
 }
 
 .guest-card .guest-name {
@@ -254,10 +255,27 @@ code {
       -ms-flex-align: center;
           align-items: center;
   border-left: 1px solid black;
+  background: red;
 }
 
-.guest-card .has-arrived img {
-  height: 2rem;
+.guest-card .has-arrived .arrived-img {
+  height: 70%;
+  width: 70%;
+  background-image: url(../vendor/img/cancel.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.guest-arrived {
+  background: #04a004;
+}
+
+.guest-arrived .has-arrived {
+  background: #00d500;
+}
+
+.guest-arrived .has-arrived .arrived-img {
+  background-image: url(../vendor/img/check.svg);
 }
 
 @media screen and (max-width: 1160px) {

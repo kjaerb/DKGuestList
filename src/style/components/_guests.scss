@@ -22,6 +22,7 @@
     border: 1px solid black;
     min-width: 10rem;
     cursor: pointer;
+    background: rgb(233, 233, 233);
     .guest-name {
         display: flex;
         align-items: center;
@@ -35,9 +36,24 @@
        width: 20%;
        @include flexCenter;
        border-left: 1px solid black;
-       img {
-           height: 2rem;
+       background: red;
+       .arrived-img {
+           height: 70%;
+           width: 70%;
+           background-image: url(../vendor/img/cancel.svg);
+           background-repeat: no-repeat;
+           background-size: contain;
        }
+    }
+}
+
+.guest-arrived {
+    background: rgb(4, 160, 4);
+    .has-arrived {
+        background: rgb(0, 213, 0);
+        .arrived-img {
+            background-image: url(../vendor/img/check.svg);
+        }
     }
 }
 

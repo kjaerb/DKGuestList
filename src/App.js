@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './vendor/img/logo.jpg';
 import UserOptions from './component/options';
 import Guests from './component/guests';
@@ -7,47 +7,42 @@ import GuestList from './vendor/guestlist.json';
 function App() {
     //Initialize guestlist
     const [SearchText, setSearchText] = useState("");
-    const [AllGuests, setAllGuests] = useState([]);
+    const [AllGuests, setAllGuests] = useState(GuestList);
     const [FilterStatus, setFilterStatus] = useState('all')
     const [FilteredGuests, setFilteredGuests] = useState([])
 
     //Initialize new variables for guestlist
-    var newGuestList = GuestList;
-    newGuestList.forEach(element => {
-        element["Arrived"] = "no";
-    })
-    newGuestList.sort((a, b) => a.Navn.localeCompare(b.Navn));
-    
+
+
     //Runs once
     useEffect(() => {
-        getLocalGuests()
-        setAllGuests(newGuestList);
+        AllGuests.forEach(element => {
+            element["Arrived"] = false;
+        })
+        AllGuests.sort((a, b) => a.Navn.localeCompare(b.Navn));
     }, [])
 
     useEffect(() => {
         var input = SearchText.toLowerCase();
-        var tempList = []
+        var tempGuestList = []
         AllGuests.forEach(guest => {
-            let guestName = JSON.stringify(guest.Navn).toLowerCase();
-            if(guestName.includes(input)) {
-                tempList.push(guest)
+            let guestName = guest.Navn.toLowerCase();
+            if (guestName.includes(input)) {
+                tempGuestList.push(guest)
             }
         })
-        filterHandler(tempList) 
+        filterHandler(tempGuestList)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [FilterStatus, AllGuests, SearchText])
-
-    useEffect(() => {
-        
-    })
 
     //Change guests shown
     function filterHandler(list) {
-        switch(FilterStatus) {
+        switch (FilterStatus) {
             case 'participating':
                 setFilteredGuests(list.filter((guest) => guest.Status === 'Deltager'))
                 break;
             case 'not-arrived':
-                setFilteredGuests(list.filter((guest) => (guest.Status === 'Deltager' || guest.Status === 'Inviteret' || guest.Status === 'Måske') && guest.Arrived === 'no'))
+                setFilteredGuests(list.filter((guest) => (guest.Status === 'Deltager' || guest.Status === 'Inviteret' || guest.Status === 'Måske') && guest.Arrived === false))
                 break;
             case 'invited':
                 setFilteredGuests(list.filter((guest) => guest.Status === 'Inviteret' || guest.Status === "Måske"))
@@ -56,39 +51,27 @@ function App() {
                 setFilteredGuests(list.filter((guest) => guest.Status === 'new-arrival'))
                 break;
             case 'arrived':
-                setFilteredGuests(list.filter((guest) => guest.Arrived ==='yes'))
+                setFilteredGuests(list.filter((guest) => guest.Arrived === true))
                 break;
-            default: 
+            default:
                 setFilteredGuests(list);
                 break;
         }
     }
 
-    //Save and get local archive
-    function saveLocalGuests() {
-        localStorage.setItem('guests', JSON.stringify(AllGuests))
-    }
-
-    function getLocalGuests() {
-        if(localStorage.getItem('guests') === null) {
-            localStorage.setItem('guests', JSON.stringify([]));
-        } else {
-            let guestsLocal = JSON.parse(localStorage.getItem('guests'));
-            setAllGuests(guestsLocal)
-        }
-    }
-
     return (
         <div className="wrapper">
-        <div className="header">
-            <img src={logo} alt="dksommerfest2021" />
-            <h1 className="header-text">Gæsteliste til DK sommerfest 2021</h1>
-        </div>
+            <div className="header">
+                <img src={logo} alt="dksommerfest2021" />
+                <h1 className="header-text">Gæsteliste til DK sommerfest 2021</h1>
+            </div>
             <UserOptions setFilterStatus={setFilterStatus}
-                         setSearchText={setSearchText}
+                setSearchText={setSearchText}
             />
-            <Guests guestList={FilteredGuests}
-                    setFilteredGuests={setFilteredGuests}
+            <Guests FilteredGuests={FilteredGuests}
+                AllGuests={AllGuests}
+                setFilteredGuests={setFilteredGuests}
+                setAllGuests={setAllGuests}
             />
         </div>
     );

@@ -14,7 +14,7 @@ function App() {
     //Initialize new variables for guestlist
     var newGuestList = GuestList;
     newGuestList.forEach(element => {
-        element["Arrived"] = "nej";
+        element["Arrived"] = "no";
     })
     newGuestList.sort((a, b) => a.Navn.localeCompare(b.Navn));
     
@@ -45,6 +45,9 @@ function App() {
         switch(FilterStatus) {
             case 'participating':
                 setFilteredGuests(list.filter((guest) => guest.Status === 'Deltager'))
+                break;
+            case 'not-arrived':
+                setFilteredGuests(list.filter((guest) => (guest.Status === 'Deltager' || guest.Status === 'Inviteret' || guest.Status === 'Måske') && guest.Arrived === 'no'))
                 break;
             case 'invited':
                 setFilteredGuests(list.filter((guest) => guest.Status === 'Inviteret' || guest.Status === "Måske"))

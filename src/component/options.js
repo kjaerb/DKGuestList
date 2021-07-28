@@ -33,6 +33,7 @@ const UserOptions = (props) => {
             <div className="arrived-option">
                 <select onChange={StatusHandler} name="guests" className="filter-guests">
                     <option value="all">Alle</option>
+                    <option value="not-arrived">Ikke ankomne</option>
                     <option value="participating">Deltager</option>
                     <option value="invited">Inviteret</option>
                     <option value="new-participants">Nye deltagere</option>

@@ -92,8 +92,9 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        height: auto;
         .search-option, .add-option, .arrived-option {
-            width: 20rem;
+            width: 100%;
             justify-content: left;
             .filter-guests {
                 width: 100%;
@@ -101,6 +102,11 @@
             input {
                 width: 100%;
                 margin: 0 0 0 1rem;
+            }
+        }
+        .add-option {
+            img {
+                margin-right: 2rem;
             }
         }
 

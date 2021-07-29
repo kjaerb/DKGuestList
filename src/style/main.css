@@ -59,6 +59,18 @@ code {
   text-align: center;
 }
 
+@media screen and (max-width: 1054px) {
+  #root .wrapper {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #root .wrapper {
+    width: 90%;
+  }
+}
+
 @media screen and (max-width: 376px) {
   #root .wrapper {
     width: 100vw;
@@ -242,9 +254,10 @@ code {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    height: auto;
   }
   .user-options .search-option, .user-options .add-option, .user-options .arrived-option {
-    width: 20rem;
+    width: 100%;
     -webkit-box-pack: left;
         -ms-flex-pack: left;
             justify-content: left;
@@ -255,6 +268,9 @@ code {
   .user-options .search-option input, .user-options .add-option input, .user-options .arrived-option input {
     width: 100%;
     margin: 0 0 0 1rem;
+  }
+  .user-options .add-option img {
+    margin-right: 2rem;
   }
 }
 

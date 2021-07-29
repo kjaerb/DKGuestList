@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    height: 2rem;
     margin: 1rem 0;
     .search-option, .add-option, .arrived-option {
         display: flex;
@@ -24,16 +25,59 @@
         }
         .search-button {
             height: 2rem;
-            cursor: pointer;
         }
     }
     .add-option {
-        img {
-            height: 2rem;
+        @include flexCenter;
+        flex-direction: column;
+        .add-participant {
+            @include flexCenter;
             cursor: pointer;
+            transform: translate(0px, 1rem);
+            transition: all 300ms ease;
+            img {
+                height: 2rem;
+            }
         }
-       
-    }   
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(0px, 2rem);
+            transition: all 300ms ease;
+        } 
+        .add-participant-info {
+            visibility: hidden;
+            opacity: 0;
+            transition: all 300ms ease;
+            @include flexCenter;
+            input {
+                border: none;
+                border-bottom: 1px solid black;
+                width: 100%;
+                padding: .5rem;
+            }
+            img {
+                height: 1.5rem;
+                cursor: pointer;
+                margin: 0 .25rem;
+            }
+            .remove-guest {
+                width: 2rem;
+                height: 2rem;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-image: url(../vendor/img/cancel.svg);
+            }
+        }
+        .visible {
+            z-index: 100;
+            visibility: visible;
+            opacity: 1;
+            transition: all 300ms ease;
+            transform: translate(0px, -1rem);
+        } 
+    }
+    
     .arrived-option {
         .filter-guests {
             height: 2rem;

@@ -11,10 +11,7 @@ function App() {
     const [FilterStatus, setFilterStatus] = useState('all')
     const [FilteredGuests, setFilteredGuests] = useState([])
 
-    //Initialize new variables for guestlist
-
-
-    //Runs once
+    //Runs once. Add arrived status to list
     useEffect(() => {
         AllGuests.forEach(element => {
             element["Arrived"] = false;
@@ -22,6 +19,7 @@ function App() {
         AllGuests.sort((a, b) => a.Navn.localeCompare(b.Navn));
     }, [])
 
+    //Search option
     useEffect(() => {
         var input = SearchText.toLowerCase();
         var tempGuestList = []

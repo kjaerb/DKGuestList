@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import SearchLogo from '../vendor/img/search.svg';
 import AddLogo from '../vendor/img/add.svg';
-import GuestList from '../vendor/guestlist.json';
+import CheckLogo from '../vendor/img/check.svg';
+import CancelLogo from '../vendor/img/cancel.svg';
 
 const UserOptions = (props) => {
-    const [img, setImg] = useState(SearchLogo)
+    const [isGuestAdderShown, setIsGuestAdderShown] = useState(false);
 
     const SearchAction = (e) => {
         props.setSearchText(e.target.value)
@@ -14,21 +15,38 @@ const UserOptions = (props) => {
         props.setFilterStatus(e.target.value)
     }
 
+    const AddGuestHandler = () => {
+        var guestInput = document.querySelector('.guest-input')
+        if (isGuestAdderShown) {
+            setIsGuestAdderShown(false)
+            guestInput.value = ''
+        } else {
+            setIsGuestAdderShown(true)
+        }
+    }
+
     return (
         <div className="user-options">
             <div className="search-option">
                 <img className="search-button"
-                    src={img}
+                    src={SearchLogo}
                     alt="søge-felt"
-                    
+
                 />
                 <input type="text"
                     placeholder="Søg efter deltager"
                     onChange={SearchAction} />
             </div>
             <div className="add-option">
-                <img src={AddLogo} alt="tilføjlogo" onClick={AddGuest} />
-                <h2>Tilføj deltager</h2>
+                <div onClick={AddGuestHandler} className={`add-participant ${isGuestAdderShown ? 'hidden' : ''}`}>
+                    <img src={AddLogo} alt="tilføjlogo" />
+                    <h2>Tilføj deltager</h2>
+                </div>
+                <div className={`add-participant-info ${isGuestAdderShown ? 'visible' : ''}`}>
+                    <img src={CheckLogo} alt="tilføj" />
+                    <input className="guest-input" type="text" placeholder="Navn" />
+                    <img onClick={AddGuestHandler} src={CancelLogo} alt="anuller" />
+                </div>
             </div>
             <div className="arrived-option">
                 <select onChange={StatusHandler} name="guests" className="filter-guests">
@@ -43,18 +61,5 @@ const UserOptions = (props) => {
         </div>
     );
 }
-
-const AddGuest = () => {
-    console.log('fired')
-    var newGuest = {
-        "Navn": "hello",
-        "Status": "test"
-    }
-
-    GuestList.push(JSON.stringify(newGuest));
-}
-
-
-
 
 export default UserOptions;

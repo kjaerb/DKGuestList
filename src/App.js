@@ -7,16 +7,20 @@ import GuestList from './vendor/guestlist.json';
 function App() {
     //Initialize guestlist
     const [SearchText, setSearchText] = useState("");
-    const [AllGuests, setAllGuests] = useState(GuestList);
+    const [AllGuests, setAllGuests] = useState([]);
     const [FilterStatus, setFilterStatus] = useState('all')
     const [FilteredGuests, setFilteredGuests] = useState([])
 
+
+
     //Runs once. Add arrived status to list
     useEffect(() => {
-        AllGuests.forEach(element => {
+        var tempList = GuestList;
+        tempList.forEach(element => {
             element["Arrived"] = false;
         })
-        AllGuests.sort((a, b) => a.Navn.localeCompare(b.Navn));
+        tempList.sort((a, b) => a.Navn.localeCompare(b.Navn));
+        setAllGuests(tempList)
     }, [])
 
     //Search option
@@ -29,6 +33,7 @@ function App() {
                 tempGuestList.push(guest)
             }
         })
+        tempGuestList.sort((a, b) => a.Navn.localeCompare(b.Navn));
         filterHandler(tempGuestList)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [FilterStatus, AllGuests, SearchText])
@@ -45,8 +50,8 @@ function App() {
             case 'invited':
                 setFilteredGuests(list.filter((guest) => (guest.Status === 'Inviteret' || guest.Status === "Måske") && guest.Arrived === false))
                 break;
-            case 'new-participants':
-                setFilteredGuests(list.filter((guest) => guest.Status === 'new-arrival'))
+            case 'new-guest':
+                setFilteredGuests(list.filter((guest) => guest.Status === 'new-guest'))
                 break;
             case 'arrived':
                 setFilteredGuests(list.filter((guest) => guest.Arrived === true))
@@ -65,6 +70,8 @@ function App() {
             </div>
             <UserOptions setFilterStatus={setFilterStatus}
                 setSearchText={setSearchText}
+                AllGuests={AllGuests}
+                setAllGuests={setAllGuests}
             />
             <Guests FilteredGuests={FilteredGuests}
                 AllGuests={AllGuests}

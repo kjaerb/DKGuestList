@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchLogo from '../vendor/img/search.svg';
 import AddLogo from '../vendor/img/add.svg';
 import CheckLogo from '../vendor/img/check.svg';
@@ -6,6 +6,7 @@ import CancelLogo from '../vendor/img/cancel.svg';
 
 const UserOptions = (props) => {
     const [isGuestAdderShown, setIsGuestAdderShown] = useState(false);
+    var guestInput = document.querySelector('.guest-input')
 
     const SearchAction = (e) => {
         props.setSearchText(e.target.value)
@@ -16,12 +17,33 @@ const UserOptions = (props) => {
     }
 
     const AddGuestHandler = () => {
-        var guestInput = document.querySelector('.guest-input')
         if (isGuestAdderShown) {
             setIsGuestAdderShown(false)
             guestInput.value = ''
         } else {
             setIsGuestAdderShown(true)
+        }
+    }
+
+    const AddParticipantHandler = () => {
+        if (guestInput.value !== '') {
+            let guestExists = false;
+            props.AllGuests.map((guest) => {
+                if (guest.Navn === guestInput.value) guestExists = true;
+            })
+            if (!guestExists) {
+                let newGuest = { "Arrived": true, "Status": "new-guest", "Navn": guestInput.value }
+                let tempList = props.AllGuests
+                tempList.push(newGuest)
+                props.setAllGuests(tempList)
+                alert(`${guestInput.value} er tilføjet til listen`)
+                AddGuestHandler()
+            } else {
+                alert("Gæst findes allerede")
+            }
+
+        } else {
+            alert("Indtast navn for at tilføje til listen")
         }
     }
 
@@ -43,7 +65,7 @@ const UserOptions = (props) => {
                     <h2>Tilføj deltager</h2>
                 </div>
                 <div className={`add-participant-info ${isGuestAdderShown ? 'visible' : ''}`}>
-                    <img src={CheckLogo} alt="tilføj" />
+                    <img onClick={AddParticipantHandler} src={CheckLogo} alt="tilføj" />
                     <input className="guest-input" type="text" placeholder="Navn" />
                     <img onClick={AddGuestHandler} src={CancelLogo} alt="anuller" />
                 </div>
@@ -51,11 +73,11 @@ const UserOptions = (props) => {
             <div className="arrived-option">
                 <select onChange={StatusHandler} name="guests" className="filter-guests">
                     <option value="all">Alle</option>
-                    <option value="not-arrived">Ikke ankomne</option>
+                    <option value="not-arrived">Ikke ankommet</option>
                     <option value="participating">Deltager</option>
-                    <option value="invited">Inviteret</option>
-                    <option value="new-participants">Nye deltagere</option>
-                    <option value="arrived">Ankomne</option>
+                    <option value="invited">Inviteret &amp; Måske</option>
+                    <option value="new-guest">Nye deltagere</option>
+                    <option value="arrived">Ankommet</option>
                 </select>
             </div>
         </div>

@@ -7,13 +7,13 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 #root {
@@ -300,13 +300,18 @@ code {
           flex-direction: column;
 }
 
-.guests .participating-guests {
+.guests .participating-guests, .guests .arrived-guests {
   display: -ms-grid;
   display: grid;
+  width: 100%;
   -ms-grid-columns: (1fr)[4];
       grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(3rem, 4rem);
   grid-gap: .5rem;
+}
+
+.guests .arrived-guests {
+  padding-bottom: 1rem;
 }
 
 .guests h1 {

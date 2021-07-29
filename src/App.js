@@ -11,8 +11,6 @@ function App() {
     const [FilterStatus, setFilterStatus] = useState('all')
     const [FilteredGuests, setFilteredGuests] = useState([])
 
-
-
     //Runs once. Add arrived status to list
     useEffect(() => {
         var tempList = GuestList;
@@ -21,6 +19,7 @@ function App() {
         })
         tempList.sort((a, b) => a.Navn.localeCompare(b.Navn));
         setAllGuests(tempList)
+        getLocalGuestList()
     }, [])
 
     //Search option
@@ -35,8 +34,22 @@ function App() {
         })
         tempGuestList.sort((a, b) => a.Navn.localeCompare(b.Navn));
         filterHandler(tempGuestList)
+        saveLocalGuestList()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [FilterStatus, AllGuests, SearchText])
+
+    const saveLocalGuestList = () => {
+        localStorage.setItem('guests', JSON.stringify(AllGuests));
+    }
+
+    const getLocalGuestList = () => {
+        if (localStorage.getItem('guests') === null) {
+            localStorage.setItem('guests', JSON.stringify([]));
+        } else {
+            let guestListLocal = JSON.parse(localStorage.getItem('guests'));
+            setAllGuests(guestListLocal)
+        }
+    }
 
     //Change guests shown
     function filterHandler(list) {
